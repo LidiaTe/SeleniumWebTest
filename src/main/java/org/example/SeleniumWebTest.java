@@ -79,12 +79,11 @@ public class SeleniumWebTest {
         clearAndEnter(By.cssSelector("#id_lname"), "Тестова");
         clearAndEnter(By.cssSelector("#id_lname_latin"), "Testova");
         clearAndEnter(By.cssSelector("#id_blog_name"), "Testova blog");
-        clearAndEnter(By.cssSelector("body > div.body-wrapper > div > div.js-lk-cv > div.container.container-padding-bottom > div.container__row > div.container__col.container__col_9.container__col_md-8.container__col_sm-12.container__col_border-left.lk-rightbar.print-block.print-wide > div > form > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(4) > div > div > input"), "01.01.1991");
+        clearAndEnter(By.cssSelector("[name=\"date_of_birth\"]"), "02.02.1992");
 
 
         //Нажать сохранить
-        driver.findElement(By.cssSelector("body > div.body-wrapper > div > div.js-lk-cv > div.container.container-padding-bottom > div.container__row > div.container__col.container__col_9.container__col_md-8.container__col_sm-12.container__col_border-left.lk-rightbar.print-block.print-wide > div > form > div.container__row.container__row_gutter-24-gt-sm > div > div > button.button.button_md-4.button_blue.lk-cv-action-buttons__button.js-disable-on-submit"))
-                .click();
+        driver.findElement(By.cssSelector("[name=\"continue\"]")).click();
 
         //Открыть https://otus.ru в "чистом браузере"
         driver.quit();
@@ -103,7 +102,7 @@ public class SeleniumWebTest {
         assertThat(By.cssSelector("#id_lname"), "Тестова");
         assertThat(By.cssSelector("#id_lname_latin"), "Testova");
         assertThat(By.cssSelector("#id_blog_name"), "Testova blog");
-        assertThat(By.cssSelector("body > div.body-wrapper > div > div.js-lk-cv > div.container.container-padding-bottom > div.container__row > div.container__col.container__col_9.container__col_md-8.container__col_sm-12.container__col_border-left.lk-rightbar.print-block.print-wide > div > form > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(4) > div > div > input"), "01.01.1991");
+        assertThat(By.cssSelector("[name=\"date_of_birth\"]"), "02.02.1992");
 
 
 
@@ -115,8 +114,17 @@ public class SeleniumWebTest {
     private void auth() {
         new WebDriverWait( driver, Duration.ofSeconds( 10 ) ).until( ExpectedConditions.visibilityOfElementLocated( By.cssSelector( ".sc-mrx253-0" ) ) );
         driver.findElement( By.cssSelector( ".sc-mrx253-0" ) ).click();
+        //login
         driver.findElement( By.cssSelector( "#__PORTAL__ > div > div > div.sc-1alnis6-1.ejcuap > div.sc-1alnis6-4.iVBbVz > div > div.sc-10p60tv-1.eDzhKh > div.sc-10p60tv-2.bQGCmu > div > div.sc-19qj39o-0.iLmCeO > div > div.sc-rq8xzv-1.hGvqzc.sc-11ptd2v-1.liHMCp > div > input" ) ).sendKeys( LOGIN );
+        //.sc-1ij08sq-0.sc-rq8xzv-2.xkNdd
+        //driver.findElement( By.cssSelector( ".sc-1ij08sq-0.sc-rq8xzv-2.xkNdd" ) ).sendKeys( LOGIN );
+
+
+        //password
         driver.findElement( By.cssSelector( "#__PORTAL__ > div > div > div.sc-1alnis6-1.ejcuap > div.sc-1alnis6-4.iVBbVz > div > div.sc-10p60tv-1.eDzhKh > div.sc-10p60tv-2.bQGCmu > div > div.sc-19qj39o-0.iLmCeO > div > div.sc-rq8xzv-1.hGvqzc.sc-11ptd2v-1-Component.ciraFX > div > input" ) ).sendKeys( PASSWORD );
+       //sc-11ptd2v-1-Component
+       // driver.findElement( By.className( "sc-11ptd2v-1-Component" ) ).sendKeys( PASSWORD );
+
         driver.findElement( By.cssSelector( "#__PORTAL__ > div > div > div.sc-1alnis6-1.ejcuap > div.sc-1alnis6-4.iVBbVz > div > div.sc-10p60tv-1.eDzhKh > div.sc-10p60tv-2.bQGCmu > div > button > div" ) ).click();
         new WebDriverWait( driver, Duration.ofSeconds( 5 ) ).until( ExpectedConditions.invisibilityOf( driver.findElement(  By.cssSelector("#__PORTAL__ > div")) ) );
 
